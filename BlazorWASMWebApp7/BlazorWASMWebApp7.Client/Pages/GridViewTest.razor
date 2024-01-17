@@ -1,0 +1,51 @@
+﻿@page "/gridviewtest"
+@attribute [StreamRendering]
+@using EasyArchitect.Web.Blazor.Components
+
+<h3>GridViewTest</h3>
+
+<p>
+    <GridView DataSource="_dataSource">
+        @if(_dataSource == null)
+        {
+            @* <p><em>Loading...</em></p> *@
+        }
+        else
+        {
+            <Columns>
+                <GridViewItem ColumnName="ID"></GridViewItem>
+                <GridViewItem ColumnName="Name"></GridViewItem>
+                <GridViewItem ColumnName="Email"></GridViewItem>
+                <GridViewItem ColumnName="Phone"></GridViewItem>
+            </Columns>
+        }
+        
+    </GridView>
+</p>
+
+@code {
+
+    protected string _startUrl = "https://localhost:7295/api/EasyArchitectV2ApiHost/GetPersons";
+
+    protected object _dataSource { get; set; } = null;
+
+    private bool getCustomerError;
+
+    override protected async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+
+        _dataSource = await GridView.GetData<Person>(_startUrl);
+    }
+
+    /// <summary>
+    /// 範例程式：請放置在你的 Models/Dto/VO 專案裡
+    /// </summary>
+    public class Person
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+    }
+}

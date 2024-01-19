@@ -25,5 +25,5 @@
 * Blazor 元件開發者的注意事項
 * 商業應用開發：以 WebApp 一路打通 Full-Stack 全端開發
 
-## 投以片位置：
+## 投影片位置：
 https://www.slideshare.net/slideshows/blazor-in-net-8/265477894
